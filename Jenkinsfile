@@ -8,13 +8,13 @@ node {
         sh "${mvnHome}/bin/mvn clean package"
         }
 
-   /*stage('SonarQube Analysis') {
+   stage('SonarQube Analysis') {
        def mvnHome =  tool name: 'maven', type: 'maven'
         withSonarQubeEnv('sonar') {
         sh "${mvnHome}/bin/mvn sonar:sonar"
         }
    }
-   stage ('TestNG result'){
+   /*stage ('TestNG result'){
 
     sh "[$class : 'Publisher', reportFilenamePattern : '**/ /*testng-result.xml']"
   }*/
