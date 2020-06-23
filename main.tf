@@ -193,7 +193,7 @@ resource "aws_instance" "master" {
  
   # Run deployment file
   kubectl apply \
-  -f https://github.com/kishorsg/cicdpipeline/blob/master/deployment.yml \
+  -f https://github.com/kishorsg/end-to-end-cicd/blob/master/deployment.yml \
   --kubeconfig admin.conf
   
   # Indicate deployment file is run
