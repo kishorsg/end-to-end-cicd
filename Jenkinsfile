@@ -14,10 +14,10 @@ node {
         sh "${mvnHome}/bin/mvn sonar:sonar"
         }
    }
-   stage ('TestNG result'){
+  /* stage ('TestNG result'){
 
     sh "[$class : 'Publisher', reportFilenamePattern : '**/ /*testng-result.xml']"
-  }
+  }*/
 
     stage ('Build Docker Image') {
         sh 'docker build -t kishorsg/my-app:2.0.0 .'
