@@ -43,11 +43,11 @@ node {
     }
     
         stage ('copy id_rsa and id_rsa.pub files'){
-        sh '''
-        cp /home/ubuntu/.ssh/id_rsa.pub /var/lib/jenkins/.ssh
-        cp /home/ubuntu/.ssh/id_rsa /var/lib/jenkins/.ssh
+        sh '
+        cp -r /home/ubuntu/.ssh /var/lib/jenkins'
+        //cp /home/ubuntu/.ssh/id_rsa /var/lib/jenkins/.ssh
         
-        '''
+        
         }
     stage ('Terraform Plan') {
         print 'Planning The TF Files'
