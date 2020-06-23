@@ -43,8 +43,7 @@ node {
     }
     
         stage ('copy id_rsa and id_rsa.pub files'){
-        sh '
-        cp -r /home/ubuntu/.ssh /var/lib/jenkins'
+        sh 'cp -r /home/ubuntu/.ssh /var/lib/jenkins'
         //cp /home/ubuntu/.ssh/id_rsa /var/lib/jenkins/.ssh
         
         
