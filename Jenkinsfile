@@ -1,8 +1,8 @@
 node {
-        /*stage('SCM Checkout') {
+        stage('SCM Checkout') {
         git 'https://github.com/kishorsg/end-to-end-cicd'
         }
-        stage('Compile-Package') {
+       /* stage('Compile-Package') {
         // Get maven home path
         def mvnHome =  tool name: 'maven', type: 'maven'
         sh "${mvnHome}/bin/mvn clean package"
@@ -14,7 +14,7 @@ node {
         sh "${mvnHome}/bin/mvn sonar:sonar"
         }
    }
-   /*stage ('TestNG result'){
+   stage ('TestNG result'){
 
     sh "[$class : 'Publisher', reportFilenamePattern : '**/ /*testng-result.xml']"
   }
@@ -28,7 +28,7 @@ node {
             sh "docker login -u kishorsg -p ${dockerHubPwd}"
         }
         sh 'docker push kishorsg/my-app:2.0.0'
-        }
+        }*/
     stage ('Terraform Init') {
         print 'Init Provider'
         sh 'terraform init'
@@ -52,7 +52,7 @@ node {
         print 'Planning The TF Files'
         withCredentials([string(credentialsId: 'aws-access-key', variable: 'AWS_ACCESS_KEY_ID'),
                       string(credentialsId: 'aws-secret-key', variable: 'AWS_SECRET_ACCESS_KEY')]) {
-            sh 'terraform plan'
+            sh 'terraform plan -out createplan'
                       }
     }
 
@@ -60,16 +60,16 @@ node {
         print 'Execute the plan'
         withCredentials([string(credentialsId: 'aws-access-key', variable: 'AWS_ACCESS_KEY_ID'),
                       string(credentialsId: 'aws-secret-key', variable: 'AWS_SECRET_ACCESS_KEY')]) {
-            sh 'terraform apply -auto-approve'
+            sh 'terraform apply createplan -auto-approve'
                       }
-    }*/
-     stage ('Terraform Destroy') {
+    }
+     /*stage ('Terraform Destroy') {
         print 'Destroy the resources'
         withCredentials([string(credentialsId: 'aws-access-key', variable: 'AWS_ACCESS_KEY_ID'),
                       string(credentialsId: 'aws-secret-key', variable: 'AWS_SECRET_ACCESS_KEY')]) {
        sh 'terraform destroy -auto-approve'
 
                       }
-    }
+    }*/
 }
    
