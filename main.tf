@@ -159,12 +159,12 @@ resource "aws_instance" "master" {
   #!/bin/bash
 
   # Install kubeadm and Docker
-  apt-get update
-  apt-get install -y apt-transport-https curl
-  curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-  echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" >/etc/apt/sources.list.d/kubernetes.list
-  apt-get update
-  apt-get install -y docker.io kubeadm
+  sudo apt-get update
+  sudo apt-get install -y apt-transport-https curl
+  sudo curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+  sudo echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" >/etc/apt/sources.list.d/kubernetes.list
+  sudo apt-get update
+  sudo apt-get install -y docker.io kubeadm
 
   # Run kubeadm
   kubeadm init \
@@ -185,16 +185,16 @@ resource "aws_instance" "master" {
   touch /home/ubuntu/done
 
   # Install cni network calico plugin
- # kubectl apply \
-  #-f https://docs.projectcalico.org/manifests/calico.yaml \
-  #--kubeconfig kishor-k8.conf
+  kubectl apply \
+  -f https://docs.projectcalico.org/manifests/calico.yaml \
+  --kubeconfig /home/ubuntu/admin.conf
   # Indicate completion of cni plugin installation on this master
   touch /home/ubuntu/donecni
  
   # Run deployment file
- # kubectl apply \
-  #-f https://github.com/kishorsg/end-to-end-cicd/blob/master/deployment.yml \
-  #--kubeconfig kishor-k8.conf
+  kubectl apply \
+  -f https://github.com/kishorsg/end-to-end-cicd/blob/master/deployment.yml \
+  --kubeconfig /home/ubuntu/admin.conf
   
   # Indicate deployment file is run
   touch /home/ubuntu/dep
