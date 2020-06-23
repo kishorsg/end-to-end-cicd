@@ -41,7 +41,14 @@ node {
             sh 'terraform validate'
                       }
     }
-
+    
+        stage ('copy id_rsa and id_rsa.pub files'){
+        sh '''
+        cp /home/ubuntu/.ssh/id_rsa.pub /var/lib/jenkins/.ssh
+        cp /home/ubuntu/.ssh/id_rsa /var/lib/jenkins/.ssh
+        
+        '''
+        }
     stage ('Terraform Plan') {
         print 'Planning The TF Files'
         withCredentials([string(credentialsId: 'aws-access-key', variable: 'AWS_ACCESS_KEY_ID'),
