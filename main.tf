@@ -187,14 +187,14 @@ resource "aws_instance" "master" {
   # Install cni network calico plugin
   kubectl apply \
   -f https://docs.projectcalico.org/manifests/calico.yaml \
-  --kubeconfig admin.conf
+  --kubeconfig kishor-k8.conf
   # Indicate completion of cni plugin installation on this master
   touch /home/ubuntu/donecni
  
   # Run deployment file
   kubectl apply \
   -f https://github.com/kishorsg/end-to-end-cicd/blob/master/deployment.yml \
-  --kubeconfig admin.conf
+  --kubeconfig kishor-k8.conf
   
   # Indicate deployment file is run
   touch /home/ubuntu/dep
