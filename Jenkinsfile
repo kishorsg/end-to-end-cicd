@@ -1,6 +1,6 @@
 node {
         stage('SCM Checkout') {
-        git 'https://github.com/kishorsg/cicdpipeline'
+        git 'https://github.com/kishorsg/end-to-end-cicd'
         }
         stage('Compile-Package') {
         // Get maven home path
