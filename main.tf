@@ -191,12 +191,9 @@ resource "aws_instance" "master" {
   # Indicate completion of cni plugin installation on this master
   touch /home/ubuntu/donecni
  
-git clone https://github.com/kishorsg/end-to-end-cicd.git
-touch /home/ubuntu/gits
-
   # Run deployment file
-  kubectl create \
-  -f /home/ubuntu/end-to-end-cicd/deployment.yml \
+  kubectl apply \
+  -f "https://github.com/kishorsg/end-to-end-cicd/blob/master/deployment.yaml" \
   --kubeconfig /home/ubuntu/admin.conf
   
   # Indicate deployment file is run
