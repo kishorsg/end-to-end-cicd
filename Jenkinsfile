@@ -44,9 +44,9 @@ node {
     
         stage ('copy id_rsa and id_rsa.pub files'){
         
-        sh 
+        
        // chmod 755 /home/ubuntu/.ssh/id_rsa
-        'cp -r /home/ubuntu/.ssh /var/lib/jenkins'
+        sh 'cp -r /home/ubuntu/.ssh /var/lib/jenkins'
         //chmod 400 /home/ubuntu/.ssh/id_rsa
         
         //cp /home/ubuntu/.ssh/id_rsa /var/lib/jenkins/.ssh
