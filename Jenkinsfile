@@ -1,5 +1,5 @@
 node {
-       /*stage('SCM Checkout') {
+       stage('SCM Checkout') {
         git 'https://github.com/kishorsg/end-to-end-cicd'
         }
        stage('Compile-Package') {
@@ -8,16 +8,16 @@ node {
         sh "${mvnHome}/bin/mvn clean package"
         }
 
-   stage('SonarQube Analysis') {
+  /* stage('SonarQube Analysis') {
        def mvnHome =  tool name: 'maven', type: 'maven'
         withSonarQubeEnv('sonar') {
         sh "${mvnHome}/bin/mvn sonar:sonar"
         }
    }
-  /* stage ('TestNG result'){
+   stage ('TestNG result'){
 
     sh "[$class : 'Publisher', reportFilenamePattern : '**/ /*testng-result.xml']"
-  }
+  }*/
 
     stage ('Build Docker Image') {
         sh 'docker build -t kishorsg/my-app:2.0.0 .'
@@ -67,14 +67,14 @@ node {
                       string(credentialsId: 'aws-secret-key', variable: 'AWS_SECRET_ACCESS_KEY')]) {
             sh 'terraform apply createplan'
                       }
-    }*/
-     stage ('Terraform Destroy') {
+    }
+     /*stage ('Terraform Destroy') {
         print 'Destroy the resources'
         withCredentials([string(credentialsId: 'aws-access-key', variable: 'AWS_ACCESS_KEY_ID'),
                       string(credentialsId: 'aws-secret-key', variable: 'AWS_SECRET_ACCESS_KEY')]) {
        sh 'terraform destroy -auto-approve'
 
                       }
-    }
+    }*/
 }
    
