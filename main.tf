@@ -182,11 +182,12 @@ resource "aws_instance" "master" {
   kubectl --kubeconfig /home/ubuntu/admin.conf config set-cluster kubernetes --server https://${aws_eip.master.public_ip}:6443
  
  export KUBECONFIG=$(pwd)/admin.conf
-  # Install CNI calico plugin
+  
+# Install CNI calico plugin
   kubectl apply --kubeconfig /home/ubuntu/admin.conf -f https://docs.projectcalico.org/manifests/calico.yaml
 
  # Run deployment file
-  kubectl apply --kubeconfig /home/ubuntu/admin.conf -f "https://github.com/kishorsg/end-to-end-cicd/blob/master/deployment.yaml" 
+  #kubectl apply --kubeconfig /home/ubuntu/admin.conf -f "https://github.com/kishorsg/end-to-end-cicd/blob/master/deployment.yaml" 
 
   # Indicate completion of bootstrapping on this node
   touch /home/ubuntu/done
